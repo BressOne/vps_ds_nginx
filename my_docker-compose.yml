@@ -1,0 +1,77 @@
+version: "3.8"
+services:
+  reverse:
+    hostname: reverse
+    image: nginx:1.19.5
+    ports:
+      - 80:80
+      # - 443:443
+    volumes:
+      - ./nginx/templates/:/etc/nginx/templates/
+      # - ./data/certbot/conf:/etc/letsencrypt
+      # - ./data/certbot/www:/var/www/certbot
+    environment:
+      - 1_URI=http://first:8000
+      - 2_URI=http://second:3000
+    networks:
+      - app-internal
+    #   - ./certs:/etc/ssl/private
+    depends_on:
+      - first
+  # certbot:
+  #   image: certbot/certbot
+  #   entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+  #   volumes:
+  #     - ./data/certbot/conf:/etc/letsencrypt
+  #     - ./data/certbot/www:/var/www/certbot/.well-known
+  second:
+    image: nginxdemos/hello
+    networks:
+      - app-internal
+      # - app-v1-local
+    # environment:
+    #   - API_URL=https://www.devapi.app.by
+    expose:
+      - 80
+    # command: npm start
+    # healthcheck:
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 40s
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: "0.5"
+    #       memory: 1026M
+  first:
+    image: nginxdemos/hello
+    networks:
+      - app-internal
+      # - app-v1-local
+    # environment:
+    #   - USER_SERVICE_URL=http://user:8001
+    expose:
+      - 80
+    # command: node ./src/index.js 
+    # healthcheck:
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+    #   start_period: 40s
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: "1"
+    #       memory: 556M
+networks:
+  app-internal:
+    name: app-internal
+  app-v1-local:
+    external: true
+    name: app-v1-local
+  agent_network:
+    driver: overlay
+    attachable: true
+volumes:
+  portainer_data:
