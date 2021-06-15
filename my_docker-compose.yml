@@ -11,8 +11,8 @@ services:
       # - ./data/certbot/conf:/etc/letsencrypt
       # - ./data/certbot/www:/var/www/certbot
     environment:
-      - 1_URI=http://first:8000
-      - 2_URI=http://second:3000
+      - 1_URI=http://first:80
+      - 2_URI=http://second:80
     networks:
       - app-internal
     #   - ./certs:/etc/ssl/private
@@ -53,7 +53,7 @@ services:
     #   - USER_SERVICE_URL=http://user:8001
     expose:
       - 80
-    # command: node ./src/index.js 
+    # command: node ./src/index.js
     # healthcheck:
     #   interval: 30s
     #   timeout: 10s
