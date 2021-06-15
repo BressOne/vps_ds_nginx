@@ -20,8 +20,8 @@ server {
     server_name www.stravy.ru stravy.ru; 
     server_tokens off;
 
-    ssl_certificate /etc/certs/rsa.pub;
-    ssl_certificate_key /etc/certs/priv.ppk;
+    ssl_certificate /etc/certs/cert.pem;
+    ssl_certificate_key /etc/certs/key.pem;
 
     location / {
         proxy_pass  ${FURI};
@@ -36,8 +36,8 @@ server {
     server_name www.stravy.ru stravy.ru; 
     server_tokens off;
 
-    ssl_certificate /etc/certs/rsa.pub;
-    ssl_certificate_key /etc/certs/priv.ppk;
+    ssl_certificate /etc/certs/cert.pem;
+    ssl_certificate_key /etc/certs/key.pem;
 
     location / {
         proxy_pass  ${SURI};
