@@ -3,7 +3,7 @@ server {
   server_name www.stravy.ru stravy.ru;
 
   location / {
-        proxy_pass  ${1_URI};
+        proxy_pass  ${FURI};
         proxy_set_header    Host                $http_host;
         proxy_set_header    X-Real-IP           $remote_addr;
         proxy_set_header    X-Forwarded-For     $proxy_add_x_forwarded_for;
@@ -15,7 +15,7 @@ server {
   server_name www.dashbord.stravy.ru dashbord.stravy.ru;
 
   location / {
-        proxy_pass  ${2_URI};
+        proxy_pass  ${SURI};
         proxy_set_header    Host                $http_host;
         proxy_set_header    X-Real-IP           $remote_addr;
         proxy_set_header    X-Forwarded-For     $proxy_add_x_forwarded_for;

@@ -11,8 +11,8 @@ services:
       # - ./data/certbot/conf:/etc/letsencrypt
       # - ./data/certbot/www:/var/www/certbot
     environment:
-      - 1_URI=http://first:80
-      - 2_URI=http://second:80
+      - FURI=http://first:80
+      - SURI=http://second:80
     networks:
       - app-internal
     #   - ./certs:/etc/ssl/private
