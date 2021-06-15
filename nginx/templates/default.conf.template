@@ -33,7 +33,7 @@ server {
 
 server {
     listen 443 ssl;
-    server_name www.stravy.ru stravy.ru; 
+    server_name www.dashbord.stravy.ru dashbord.stravy.ru;
     server_tokens off;
 
     ssl_certificate /etc/certs/cert.pem;
